@@ -28,8 +28,21 @@ public:
     // IT CLASHES WITH THE DEFAULT CONSTRUCTER THOUGH
     // therefore you can have 1 or the other
     
+    
+    // if you uncomment this, you need to comment the default constructor
+    // otherwise it wont know what to use
+
 //    CRectangle(float = 10, float = 20);
+    
     // declared same as default constructor (objects)
+    
+    
+    
+    
+    // copy constructor
+    CRectangle(const CRectangle&);
+    
+    
     
     float area() { return length * width; } // inline definition AND implementation
     void setLength(float length) { this->length = length; }
@@ -37,6 +50,9 @@ public:
     
     
 };
+
+
+
 
 
 // Class Implementation
@@ -50,9 +66,19 @@ CRectangle::CRectangle(float length, float width) {
     // default constructor (no parameters) this CONSTRUCTOR is OVERLOADED
 CRectangle::CRectangle() {
     // If no values are passed, these are the default values
-    length = 1.0;
-    width = 1.0;
+    length = 1.2;
+    width = 2.44;
 }
+
+    // Copy constructor
+CRectangle::CRectangle(const CRectangle& newRect) {
+    
+    // copy over the data attributes
+    length = newRect.length;
+    width = newRect.width;
+    
+}
+
 
 
 
@@ -75,8 +101,12 @@ int main() {
     
     // Default-ly made rectangle
     CRectangle rect2; // NO PARENTHESIS FOR DEFAULT CONSTRUCTOR
-    cout << "\nRectangle 2 Area: " << rect2.area() << endl;
-        
+    cout << "\nRectangle 2 Area = " << rect2.area() << endl;
+    
+    // Instantiate Rectangle using copy constructor
+    // Copies from CRectangle2
+    CRectangle rect3(rect2);
+    cout << "\nRectangle 3, a copy of rectangle 2 Area = " << rect3.area() << endl;
 
     return 1;
 }
